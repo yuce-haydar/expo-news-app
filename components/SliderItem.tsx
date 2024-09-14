@@ -4,6 +4,7 @@ import { NewsDataType } from '@/types'
 import { SharedValue } from 'react-native-gesture-handler/lib/typescript/handlers/gestures/reanimatedWrapper'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Colors } from '@/constants/Colors'
+import Animated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated'
 
 type Props = {
     sliderItem: NewsDataType,
@@ -13,8 +14,32 @@ type Props = {
 
 const { width } = Dimensions.get('screen')
 const SliderItem = ({ sliderItem, index, scrollX }: Props) => {
+    const rnStyle = useAnimatedStyle(() => {
+        return {
+            // get the previous and next item on the view of the active item, or scroll
+            transform: [
+                {
+                    translateX: interpolate(
+                        scrollX.value,
+                        [(index - 1) * width, index * width, (index + 1) * width],
+                        [-width * 0.15, 0, width * 0.15],
+                        Extrapolation.CLAMP
+                    ),
+                },
+                {
+                    scale: interpolate(
+                        scrollX.value,
+                        [(index - 1) * width, index * width, (index + 1) * width],
+                        [0.9, 1, 0.9],
+                        Extrapolation.CLAMP
+                    ),
+                },
+            ],
+        };
+    });
+
     return (
-        <View style={styles.itemWrapper}>
+        <Animated.View style={[styles.itemWrapper,rnStyle]}>
             <Image source={{ uri: sliderItem.image_url }} style={styles.image} />
             <LinearGradient colors={["transparent", 'rgba(0,0,0,0.8)']} style={styles.background}>
                 <View style={styles.sourceInfo}>
@@ -27,14 +52,14 @@ const SliderItem = ({ sliderItem, index, scrollX }: Props) => {
                     <Text style={styles.sourceName}>
                         {sliderItem.source_name}
                     </Text>
-                 
-                       </View>
-                    <Text style={styles.title}  numberOfLines={2}>
-                        {sliderItem.title}
-                    </Text>
-            
+
+                </View>
+                <Text style={styles.title} numberOfLines={2}>
+                    {sliderItem.title}
+                </Text>
+
             </LinearGradient>
-        </View>
+        </Animated.View>
     )
 }
 
@@ -53,14 +78,14 @@ const styles = StyleSheet.create({
     image: {
         width: width - 60,
         height: 180,
-        borderRadius: 20,
+        borderRadius: 10,
     },
     title: {
         fontSize: 14,
         color: Colors.white,
         position: 'absolute',
         top: 120,
-        paddingHorizontal:20,
+        paddingHorizontal: 20,
 
     }
 

@@ -39,8 +39,8 @@ const Page = (props: Props) => {
       <SearchBar />
       {
         isLoading ? (
-          <ActivityIndicator  size={'large'}/> 
-        ): (
+          <ActivityIndicator size={'large'} />
+        ) : (
           <BreakingNews newsList={breakingNews}></BreakingNews>
         )
       }
