@@ -1,19 +1,19 @@
 const newsCategoryList = [
   {
     id: 1,
-    title: 'All',
+    title: 'Hepsi',
     slug: '',
     selected: false,
   },
   {
     id: 2,
-    title: 'Politics',
+    title: 'Politika',
     slug: 'politics',
     selected: false,
   },
   {
     id: 3,
-    title: 'Science',
+    title: 'Bilim',
     slug: 'science',
     selected: false,
   },
@@ -25,19 +25,19 @@ const newsCategoryList = [
   },
   {
     id: 5,
-    title: 'Sports',
+    title: 'Spor',
     slug: 'sports',
     selected: false,
   },
   {
     id: 6,
-    title: 'Technology',
+    title: 'Teknoloji',
     slug: 'technology',
     selected: false,
   },
   {
     id: 7,
-    title: 'Business',
+    title: 'Piyasa Ekonomi',
     slug: 'business',
     selected: false,
   },

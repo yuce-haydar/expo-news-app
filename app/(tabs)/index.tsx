@@ -6,6 +6,7 @@ import SearchBar from '@/components/SearchBar';
 import axios from 'axios';
 import { NewsDataType } from '@/types';
 import BreakingNews from '@/components/BreakingNews';
+import Categories from '@/components/Categories';
 
 type Props = {};
 
@@ -32,6 +33,10 @@ const Page = (props: Props) => {
       console.error("Error fetching breaking news:", error);
     }
   };
+  const onCatChanged = (category: string) => {
+    console.log(category);
+  }
+
 
   return (
     <View style={[styles.container, { paddingTop: safeTop }]}>
@@ -44,6 +49,8 @@ const Page = (props: Props) => {
           <BreakingNews newsList={breakingNews}></BreakingNews>
         )
       }
+      <Categories onCategoryChanged={onCatChanged}/>
+      
     </View>
   );
 };
