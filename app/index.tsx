@@ -1,4 +1,11 @@
-import { ImageBackground, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import { Colors } from "@/constants/Colors";
@@ -10,20 +17,34 @@ const Page = () => {
   return (
     <View style={styles.container}>
       <StatusBar />
-      <ImageBackground source={require("@/assets/images/getting-started.jpg")} style={{ flex: 1 }} resizeMode="cover" />
-      <View style={styles.wrapper}>
-
-        <Animated.Text entering={FadeInRight.delay(300).duration(500)} style={styles.title}>Welcome Page</Animated.Text>
-        <Animated.Text entering={FadeInRight.delay(700).duration(500)} style={styles.description}>Yeni Haberleri Okuyun ve Kendinize Göre Düzenleyin</Animated.Text>
-        <Animated.View entering={FadeInDown.delay(1200).duration(500)}>
-          <TouchableOpacity style={styles.btn} onPress={() => router.replace("/(tabs)")}>
-            <Text style={styles.btnTxt}>Go to Home Screen</Text>
-          </TouchableOpacity>
-        </Animated.View>
-      </View>
-
-      <ImageBackground />
-
+      <ImageBackground
+        source={require("@/assets/images/getting-started.jpg")}
+        style={styles.imageBackground}
+        resizeMode="cover"
+      >
+        <View style={styles.wrapper}>
+          <Animated.Text
+            entering={FadeInRight.delay(300).duration(500)}
+            style={styles.title}
+          >
+            Welcome Page
+          </Animated.Text>
+          <Animated.Text
+            entering={FadeInRight.delay(700).duration(500)}
+            style={styles.description}
+          >
+            Yeni Haberleri Okuyun ve Kendinize Göre Düzenleyin
+          </Animated.Text>
+          <Animated.View entering={FadeInDown.delay(1200).duration(500)}>
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => router.replace("/(tabs)")}
+            >
+              <Text style={styles.btnTxt}>Go to Home Screen</Text>
+            </TouchableOpacity>
+          </Animated.View>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -33,16 +54,19 @@ export default Page;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: 'center', // İçeriği dikeyde ortalamak için
   },
   wrapper: {
-
+    flex: 1,
     justifyContent: 'flex-end',
     paddingBottom: 50,
     alignItems: 'center',
     paddingHorizontal: 20,
     gap: 20,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   title: {
     color: Colors.white,
@@ -74,5 +98,5 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     lineHeight: 22,
     textAlign: 'center',
-  }
+  },
 });

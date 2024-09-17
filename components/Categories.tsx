@@ -30,7 +30,7 @@ const Categories = ({ onCategoryChanged }: Props) => {
     };
 
     return (
-        <View>
+        <View style={styles.container}>
             <Text style={styles.title}>Popüler Olan Kategoriler</Text>
             <ScrollView
                 ref={scrollRef}
@@ -66,6 +66,9 @@ const Categories = ({ onCategoryChanged }: Props) => {
 export default Categories;
 
 const styles = StyleSheet.create({
+    container:{
+        height:100,
+    },
     title: {
         fontSize: 18,
         fontWeight: '700',
